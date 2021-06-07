@@ -1,0 +1,16 @@
+{{>_header}}
+
+<form action="/login" method="POST">
+    <h2>Login</h2>
+    <label for="email">Email</label>
+    <input type="text" name="email" >
+    <label for="password">Password</label>
+    <input type="password" name="password">
+    <button type="submit">Entrar</button>
+    <br>
+    {{#if message}}
+        <div>{{message}}</div>
+    {{/if}}
+</form>
+
+{{>_footer}}
