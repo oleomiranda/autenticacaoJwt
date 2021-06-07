@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser")
 const dotenv = require("dotenv").config()
 const db = require("./database/sql")
 const userControl = require("./controllers/userControl")
-
+const {createJwt} = require("./controllers/jwtConfig")
 
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
@@ -32,6 +32,13 @@ app.get("/login", (req, res) => {
 
 app.get("/smoothies", (req, res) => {
     res.render("smoothies")
+})
+
+app.get("/lol", async (rerq, res) => {
+    const token = await createJwt(33)
+    console.log("aqui o token => ", token)
+    res.cookie("jwt", token, {maxAge: 2329423232, httpOnly: true})
+    res.send("lol")
 })
 
 app.listen(8081, console.log('RODANDO...'))
